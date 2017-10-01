@@ -27,7 +27,7 @@ describe 'the project update path', {:type => :feature} do
     test_project.save
     visit '/'
     click_link('Teaching Kids to Code')
-    click_link('Edit Project')
+    click_link('Update Project')
     fill_in('name', :with => 'Teaching Ruby to Kids')
     click_button('Update Project')
     expect(page).to have_content('Teaching Ruby to Kids')
@@ -41,9 +41,9 @@ describe 'the project delete path', {:type => :feature} do
     test_project = Project.new({:name => 'Teaching Kids to Code', :id => nil})
     test_project.save
     id = test_project.id
-    visit "/projects/#{id}/edit"
-    click_button('Delete Project')
-    vist '/'
+    visit "/projects/#{id}/update"
+    click_button('Erase Project! Warning erasure is final!')
+    visit '/'
     expect(page).not_to have_content("Teaching Kids to Code")
   end
 end
