@@ -23,19 +23,19 @@ class Project
   end
 
   def save
-  result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
-  @id = result.first.fetch("id").to_i
+    result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first.fetch("id").to_i
   end
 
   def self.find(id)
-   found_project = nil
-   Project.all.each do |project|
-     if project.id == id
-       found_project = project
-     end
-   end
-   found_project
- end
+    found_project = nil
+    Project.all.each do |project|
+      if project.id == id
+        found_project = project
+      end
+    end
+    found_project
+  end
 
 
   def volunteers
@@ -54,6 +54,10 @@ class Project
     @id = self.id
     @name = attributes.fetch(:name)
     DB.exec("UPDATE projects SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
   end
 
 end

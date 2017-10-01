@@ -41,3 +41,16 @@ post('/projects/:id') do
   @volunteers = @project.volunteers
   erb(:project)
 end
+
+get ('/projects/:id/update') do
+  @project = Project.find(params["id"].to_i)
+  erb(:project_update)
+end
+
+patch ('/projects/:id') do
+  id = params["id"].to_i
+  @project = Project.find(id)
+  @project.update({name: params.fetch("name"), id: id})
+  @volunteers = @project.volunteers
+  erb(:project)
+end
