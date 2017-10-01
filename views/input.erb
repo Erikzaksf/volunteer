@@ -5,6 +5,18 @@
 <h2>List of current projects:</h2>
 <%if @projects.any?%>
   <%@projects.each do |project|%>
-    <a href="/projects/<%=project.id%>"><%=project.title%></p></a>
+    <a href="/projects/<%=project.id%>"><%=project.name%></p></a>
   <%end%>
+  <% else %>
+  <p>There are no current projects</p>
 <%end%>
+<h2>Begin a new project: </h2>
+<br>
+<form action="/" method="post">
+  <div class="form-group">
+    Label your new project.<br>
+    <label for="name">Name:</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Add</button>
+</form>

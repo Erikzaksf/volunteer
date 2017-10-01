@@ -10,6 +10,7 @@ class Project
     self.name == another_project.name
   end
 
+
   def self.all
     returned_projects = DB.exec("SELECT * FROM projects;")
     projects = []
@@ -21,7 +22,20 @@ class Project
     projects
   end
 
+  def save
+  result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
+  @id = result.first.fetch("id").to_i
+  end
 
+  def self.find(id)
+   found_project = nil
+   Project.all.each do |project|
+     if project.id == id
+       found_project = project
+     end
+   end
+   found_project
+ end
 
 
 
