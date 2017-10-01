@@ -38,10 +38,22 @@ class Project
  end
 
 
+  def volunteers
+    volunteers = []
+    list = DB.exec("SELECT * FROM volunteers WHERE project_id = '#{@id}'")
+    list.each do |volunteer|
+      id = volunteer.fetch("id").to_i
+      project_id = volunteer.fetch("project_id").to_i
+      name = volunteer.fetch("name")
+      volunteers.push(Volunteer.new({id: id, project_id: project_id, name: name}))
+    end
+    volunteers
+  end
 
-
-
-
-
+  def update(attributes)
+    @id = self.id
+    @name = attributes.fetch(:name)
+    DB.exec("UPDATE projects SET name = '#{@name}' WHERE id = #{@id};")
+  end
 
 end

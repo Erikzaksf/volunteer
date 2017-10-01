@@ -1,0 +1,17 @@
+
+<h2>Volunteer's currently assigned to: <%=@project.name%></h2>
+<%if @volunteers != nil %>
+  <h3>Volunteer List</h3>
+  <% @volunteers.each do |volunteer|%>
+    <a href="/volunteers/<%=volunteer.id%>"><%=volunteer.name%></a>
+    <br>
+  <%end %>
+<%end %>
+<form action="/projects/<%=@project.id%>" method="post">
+  <div class="form-group">
+  Add a new Volunteer.<br>
+    <label for="name">Name:</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Add</button>
+</form>
