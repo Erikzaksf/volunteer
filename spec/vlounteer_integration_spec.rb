@@ -14,7 +14,7 @@ describe 'the project creation path', {:type => :feature} do
   it 'takes the user to the homepage where they can create a project' do
     visit '/'
     fill_in('name', :with => 'Teaching Kids to Code')
-    click_button('Create Project')
+    click_button('Add')
     expect(page).to have_content('Teaching Kids to Code')
   end
 end
@@ -60,7 +60,7 @@ describe 'the volunteer detail page path', {:type => :feature} do
     visit "/projects/#{project_id}"
     click_link('Jasmine')
     fill_in('name', :with => 'Jane')
-    click_button('Update Volunteer')
+    click_button('Update Name')
     expect(page).to have_content('Jane')
   end
 end

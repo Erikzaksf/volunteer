@@ -1,0 +1,23 @@
+<h1><%= @volunteer.name%></h1>
+
+<h3><%= @volunteer.name%> currently assigned to <%= @project.name%></h3>
+
+<form action="/volunteers/<%=@volunteer.id%>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <div class="form-group">
+    Update name of current volunteer:<br>
+    <label for="name">Name:</label>
+    <input id="name" name="name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Update Name</button>
+</form>
+<form action="/projects/<%=@project.id()%>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <input type="hidden" name="delete_id" value="<%= @volunteer.id%>">
+
+  <button type="submit" class="btn">Erase Volunteer! Warning erasure is final!</button>
+</form>
+
+ </div>
+</div>
+</div>
